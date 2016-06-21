@@ -9,3 +9,13 @@ The sets contains a simple button class, a checkbox class (derived from the butt
 I plan to add also a dropdown list, mostly for choosing game resolution and most probably radio buttons group and menu which would handle both simple strings and pictures for items. Without forgetting the must-have progress bar with multiple feature to display or not progress/resource on or near the bar.
 
 They're will be free to use as much as you want and need :).
+
+Current status:
+- cleaning in progress
+- button (simple, timed and checkbox) are working
+- volume control need some more work
+- progress bar logic work, display to add
+- radio button TBD
+- menu need to be improved and cleaned a little bit
+- project need to be uploaded in the repository (soon)
+- exmaples and documentation TBD
