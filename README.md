@@ -11,11 +11,11 @@ I plan to add also a dropdown list, mostly for choosing game resolution and most
 They're will be free to use as much as you want and need :).
 
 Current status:
-- cleaning in progress
-- button (simple, timed and checkbox) are working
+- buttons (simple, timed and checkbox) are working
 - volume control need some more work
 - progress bar logic work, display to add
+- cleaning TBD
 - radio button TBD
-- menu need to be improved and cleaned a little bit
-- project need to be uploaded in the repository (soon)
-- exmaples and documentation TBD
+- menu need to be improved and cleaned a (big) little bit
+- menu also needs picture/texture management (spritefont is very limited for now, especially as long as te issue regarding styles is not fixed)
+- examples and documentation TBD
