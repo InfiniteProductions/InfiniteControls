@@ -8,7 +8,7 @@ namespace InfiniteControlsSamples
 		[STAThread]
 		static void Main()
 		{
-			using (var game = new CircleCollisionTest())  // ButtonsTest1())
+			using (var game = new ButtonsTest1())  // CircleCollisionTest())
 				game.Run();
 		}
 	}

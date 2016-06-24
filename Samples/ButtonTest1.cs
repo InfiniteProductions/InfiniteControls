@@ -55,8 +55,8 @@ namespace InfiniteControlsSamples
 			//cbtest1.Enabled = false;
 
 			//circle button: 64x64 base rec
-			// 445,232 (TL corner), R=32  centre=477,264
-			circleButton1 = new SimpleButton(new Vector2(445, 232), new Vector2(64, 64), 0.8f, CollisionType.Circle);
+			// 445,232 (TL corner), R=32  centre=477,264   //445, 232
+			circleButton1 = new SimpleButton(new Vector2(477, 264), new Vector2(64, 64), 0.8f, CollisionType.Circle);
 
 			//								 dec button, inc button, body, cursor (width), gap and height
 			// body size = 11 * cursorsize
@@ -125,6 +125,8 @@ namespace InfiniteControlsSamples
 
 		protected override void UnloadContent()
 		{
+			Content.Unload();
+			GC.Collect(0);
 		}
 
 
@@ -166,12 +168,15 @@ namespace InfiniteControlsSamples
 		}
 
 
+		// VS cursor not drawn => SB sortmode/alphablend
+		// circle button not drawn ! => butonarea (drawrect) 0000 !
+
 		protected override void Draw(GameTime gameTime)
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 			string text = string.Format("Button1={0} CB1={1} Vol={2} cooldowntime={3} SDclicked={4}", varButton1, varCB1, vstest1.currentVolume, cooldown1.CooldownTime, circleButton1.Pressed());
 
-			spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend); // SpriteSortMode.BackToFront, BlendState.AlphaBlend);
 
 			spriteBatch.Draw(background, Vector2.Zero, Color.White);
 

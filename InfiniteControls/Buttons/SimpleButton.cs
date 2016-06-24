@@ -55,6 +55,8 @@ namespace InfiniteControls
             ReleasedTexture = textureoff;
             PressedTexture = textureon;
 
+			// button area is set whatever collision type because it is also use for drawing
+
 			if (ctype == CollisionType.Rectangle)
 			{
 				ButtonArea = new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)size.Y);
@@ -63,6 +65,9 @@ namespace InfiniteControls
 			else
 			{
 				ButtonAreaCircle = new Circle(Size.X /2.0f, new Vector2(position.X, position.Y));
+
+				// a bit complicated this way
+				ButtonArea = new Rectangle((int)position.X - (int)Size.X / 2, (int)position.Y - (int)Size.Y / 2, (int)Size.X, (int)size.Y);
 				collisionType = CollisionType.Circle;
 			}
 
@@ -115,11 +120,12 @@ namespace InfiniteControls
 				}
 				else
 				{
-					Circle mouseclick = new Circle(4.0f, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
+					Circle mouseclick = new Circle(2.5f, new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
 
 					System.Diagnostics.Debug.Print(string.Format("SBcc upd mc={0}", mouseclick));
 
-					if (mouseclick.Intersects(ButtonAreaCircle))
+					//if (mouseclick.Intersects(ButtonAreaCircle))
+					if (ButtonAreaCircle.Intersects(mouseclick))
 					{
 						buttonState = buttonState.Pressed;
 						pressedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
