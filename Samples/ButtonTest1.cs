@@ -25,7 +25,7 @@ namespace InfiniteControlsSamples
 		Button cooldown1;
 		Checkbox cbtest1;
 		VolumeSelector vstest1;
-		ProgressBar pbar1;
+		ProgressBar spbar1;
 
 		TButton tbtest;
 		bool varButton1 = false;
@@ -65,7 +65,14 @@ namespace InfiniteControlsSamples
 
 			tbtest = new TButton(new Vector2(180, 180), new Vector2(64, 64), null, null, 0.2f, 8);
 
-			//pbar1 = new ProgressBar(new Vector2(300, 180), new UInt16[5] { 110, 2, 5, 100, 64 }, false, 0, 5);
+			//Body = 0, Gap = 1, Step = 2, Width = 3, Height = 4
+			spbar1 = new ProgressBar(new Vector2(100, 500), new UInt16[6] { 1, 0, 10, 5, 300, 64 }, false, 0, 10, 0.25f);
+
+			//radio buttons
+			// 830, 140
+			// 830, 224
+			// 830, 300
+
 
 			IsMouseVisible = true;
 
@@ -114,11 +121,16 @@ namespace InfiniteControlsSamples
 			vstest1.spriteBatch = spriteBatch;
 			vstest1.SetTextures(vsbody, vscursor, vsdecr, vsdecp, vsincr, vsincp);
 
-			//radio buttons
-			// 830, 140
-			// 830, 224
-			// 830, 300
+			Texture2D spbbody = Content.Load<Texture2D>("ProgessBar/simplePGB");
+			Texture2D spbstep = Content.Load<Texture2D>("ProgessBar/progress");
 
+			spbar1.spriteBatch = spriteBatch;
+			spbar1.SetTextures(spbbody, spbstep);
+
+			//Texture2D pbbody = Content.Load<Texture2D>("ProgessBar/body");
+			//Texture2D pbleft = Content.Load<Texture2D>("ProgessBar/left");
+			//Texture2D pbright = Content.Load<Texture2D>("ProgessBar/right");
+			//Texture2D pbstep = Content.Load<Texture2D>("ProgessBar/progress");
 
 		}
 
@@ -159,8 +171,8 @@ namespace InfiniteControlsSamples
 			varButton1 = testButton1.Pressed();
 			varCB1 = cbtest1.Checked();
 
-			//pbar1.Update(gameTime, 5);
-			//System.Diagnostics.Debug.Print(string.Format("PBar prog={0}", pbar1.GetProgress()));
+			spbar1.Update(gameTime, 2);
+			System.Diagnostics.Debug.Print(string.Format("PBar prog={0}", spbar1.GetProgress()));
 
 			PreviousMouseInput = MouseInput;
 
@@ -174,7 +186,7 @@ namespace InfiniteControlsSamples
 		protected override void Draw(GameTime gameTime)
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
-			string text = string.Format("Button1={0} CB1={1} Vol={2} cooldowntime={3} SDclicked={4}", varButton1, varCB1, vstest1.currentVolume, cooldown1.CooldownTime, circleButton1.Pressed());
+			string text = string.Format("Button1={0} CB1={1} Vol={2} cooldowntime={3} SDclicked={4} PB1={5}", varButton1, varCB1, vstest1.currentVolume, cooldown1.CooldownTime, circleButton1.Pressed(), spbar1.GetProgress());
 
 			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend); // SpriteSortMode.BackToFront, BlendState.AlphaBlend);
 
@@ -192,7 +204,7 @@ namespace InfiniteControlsSamples
 
 			vstest1.Draw();
 
-			//pbar1.Draw();
+			spbar1.Draw();
 
 			spriteBatch.End();
 
