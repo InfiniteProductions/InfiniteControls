@@ -69,8 +69,9 @@ namespace InfiniteControls
 			System.Diagnostics.Debug.Print(string.Format("contArea={0}", ControlArea));
 
 			//pos, size, ISSUE/FIXED ==> inc pos is wrong, covered by/over body tex
+			// inc pos miss a gap before (TC?) (gap or gap * 2 = no change)
 			DecreaseVolume = new SimpleButton(new Vector2((int)position.X, (int)position.Y), new Vector2(sizes[(int)VSSizes.DecButton], sizes[(int)VSSizes.Height]), 0.02f);
-			IncreaseVolume = new SimpleButton(new Vector2((int)position.X + sizes[(int)VSSizes.Body] + sizes[(int)VSSizes.DecButton] + sizes[(int)VSSizes.Gap], (int)position.Y), new Vector2(sizes[(int)VSSizes.IncButton], sizes[(int)VSSizes.Height]), 0.02f);
+			IncreaseVolume = new SimpleButton(new Vector2((int)position.X + sizes[(int)VSSizes.Body] + sizes[(int)VSSizes.DecButton] + sizes[(int)VSSizes.Gap] * 2, (int)position.Y), new Vector2(sizes[(int)VSSizes.IncButton], sizes[(int)VSSizes.Height]), 0.02f);
 		}
 
 
